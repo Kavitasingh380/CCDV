@@ -1,0 +1,21 @@
+import anthropic
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client= anthropic.Anthropic()
+message = client.messages.create(
+    model = 'claude-haiku-5-5',
+    max_tokens = 200,
+    messages = [{'role':'user',
+                 'content':'What is an API key? One sentence'
+                 
+        
+        }]
+    
+)
+print(message.content[0].text)
+print("stop reason:",message.stop_reason)
+print('usage:',message.usage.input_tokens,'in,',message.usage.output_tokens,'out')
+
+print('message',message)
